@@ -1,0 +1,176 @@
+.app-root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.6s ease;
+}
+
+.app-root.mounted .app-header,
+.app-root.mounted .app-main,
+.app-root.mounted .app-footer {
+  animation: fadeUp 0.6s ease both;
+}
+
+.app-root.mounted .app-header { animation-delay: 0.1s; }
+.app-root.mounted .app-main { animation-delay: 0.2s; }
+.app-root.mounted .app-footer { animation-delay: 0.4s; }
+
+/* Background orbs */
+.bg-orbs {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.15;
+}
+
+.orb-1 {
+  width: 500px;
+  height: 500px;
+  top: -150px;
+  right: -100px;
+  background: radial-gradient(circle, #c1440e, transparent);
+  animation: orbFloat1 12s ease-in-out infinite alternate;
+}
+
+.orb-2 {
+  width: 400px;
+  height: 400px;
+  bottom: -80px;
+  left: -80px;
+  background: radial-gradient(circle, #1a6b8a, transparent);
+  animation: orbFloat2 15s ease-in-out infinite alternate;
+}
+
+.orb-3 {
+  width: 300px;
+  height: 300px;
+  top: 40%;
+  left: 40%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, #8b6914, transparent);
+  opacity: 0.08;
+  animation: orbFloat3 10s ease-in-out infinite alternate;
+}
+
+@keyframes orbFloat1 {
+  from { transform: translate(0, 0) scale(1); }
+  to { transform: translate(-40px, 30px) scale(1.1); }
+}
+
+@keyframes orbFloat2 {
+  from { transform: translate(0, 0) scale(1); }
+  to { transform: translate(30px, -50px) scale(1.15); }
+}
+
+@keyframes orbFloat3 {
+  from { transform: translate(-50%, -50%) scale(1); }
+  to { transform: translate(-50%, -50%) scale(1.3); opacity: 0.04; }
+}
+
+/* Header */
+.app-header {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 28px 16px;
+}
+
+.app-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-mark {
+  font-size: 1rem;
+  color: #c1440e;
+  animation: logoPulse 3s ease-in-out infinite;
+  line-height: 1;
+}
+
+@keyframes logoPulse {
+  0%, 100% { transform: rotate(0deg); color: #c1440e; }
+  50% { transform: rotate(45deg); color: #8b6914; }
+}
+
+.logo-text {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: rgba(255,255,255,0.85);
+  letter-spacing: 0.04em;
+}
+
+/* Main content */
+.app-main {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 24px;
+}
+
+.app-tagline {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  color: rgba(255,255,255,0.25);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+/* Footer */
+.app-footer {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px 20px;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: rgba(255,255,255,0.2);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.footer-dot {
+  opacity: 0.4;
+}
+
+/* Theme-specific orb colors */
+.theme-forest .orb-1 { background: radial-gradient(circle, #4e8c4e, transparent); }
+.theme-forest .orb-2 { background: radial-gradient(circle, #2d5c2d, transparent); }
+
+.theme-ocean .orb-1 { background: radial-gradient(circle, #2a9bc4, transparent); }
+.theme-ocean .orb-2 { background: radial-gradient(circle, #1a5a8a, transparent); }
+
+.theme-night .orb-1 { background: radial-gradient(circle, #4a4a8a, transparent); }
+.theme-night .orb-2 { background: radial-gradient(circle, #2a2a6a, transparent); }
+
+@media (max-width: 600px) {
+  .app-header {
+    padding: 16px 16px 12px;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .logo-text {
+    font-size: 0.9rem;
+  }
+}
